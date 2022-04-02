@@ -24,7 +24,7 @@ export default function Profile(props) {
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Text>{props.year}</Card.Text>
                     <Button
-                        variant="secondary"
+                        variant="outline-secondary"
                         onClick={() => setShowModal(true)}
                     >
                         See Profile
@@ -42,31 +42,61 @@ export default function Profile(props) {
                         {props.name}
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="p-4">
                     <Container>
                         <Row>
-                            <Col>
-                                <Image
-                                    src={props.picture}
-                                    height="300"
-                                    width="300"
-                                />
+                            <Col
+                                xs={6}
+                                className="d-flex align-items-center justify-content-center"
+                            >
+                                <Image src={props.picture} fluid="true" />
                             </Col>
-                            <Col>
-                                <Row>Name: {props.name}</Row>
-                                <Row>Year: {props.year}</Row>
-                                <Row>Gender: {props.gender}</Row>
-                                <Row>Major: {props.major}</Row>
-                                <Row>Birthday: {props.birthday}</Row>
-                                <Row>Role: {props.role}</Row>
-                                <Row>Home: {props.home}</Row>
-                                <Row>Quote: {props.quote}</Row>
-                                <Row>Favorite Shoe: {props.favoriteShoe}</Row>
-                                <Row>
-                                    Favorite Artist: {props.favoriteArtist}
-                                </Row>
-                                <Row>Favorite Color: {props.favoriteColor}</Row>
-                                <Row>Phone Type: {props.phoneType}</Row>
+                            <Col xs={6} className="bg-light border">
+                                <p>
+                                    <b>Name:</b> {props.name}
+                                </p>
+                                <p>
+                                    <b>Year:</b> {props.year}
+                                </p>
+                                <p>
+                                    <b>Gender:</b> {props.gender}
+                                </p>
+                                <p>
+                                    <b>Major: </b>
+                                    {props.major}
+                                </p>
+                                <p>
+                                    <b>Birthday: </b>
+                                    {props.birthday}
+                                </p>
+                                <p>
+                                    <b>Role: </b>
+                                    {props.role}
+                                </p>
+                                <p>
+                                    <b>Home: </b>
+                                    {props.home}
+                                </p>
+                                <p>
+                                    <b>Quote: </b>
+                                    {props.quote}
+                                </p>
+                                <p>
+                                    <b>Favorite Shoe: </b>
+                                    {props.favoriteShoe}
+                                </p>
+                                <p>
+                                    <b>Favorite Artist: </b>
+                                    {props.favoriteArtist}
+                                </p>
+                                <p>
+                                    <b>Favorite Color: </b>
+                                    {props.favoriteColor}
+                                </p>
+                                <p>
+                                    <b>Phone Type: </b>
+                                    {props.phoneType}
+                                </p>
                             </Col>
                         </Row>
                     </Container>

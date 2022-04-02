@@ -26,32 +26,14 @@ function App() {
 			<Header />
 			<NavBar />
 			<Container>
-				<Row className="test">
+				<Row>
 					{
 						memberData.map(member => (
 							<Profile name={member.name} year={member.year} picture={member.picture} gender={member.gender} major={member.major} birthday={member.birthday} role={member.role} home={member.home} quote={member.quote} favoriteShoe={member.favoriteShoe} favoriteArtist={member.favoriteArtist} favoriteColor={member.favoriteColor} phoneType={member.phoneType} />
 						))
 					}
 				</Row>
-
-				{/* <Row>
-					<Profile />
-					<Profile />
-					<Profile />
-				</Row> */}
 			</Container>
-			{/* <Row>
-				<Col>
-					<Profile />
-				</Col>
-				<Col>
-					<Profile />
-				</Col>
-				<Col>
-					<Profile />
-				</Col>
-			</Row> */}
-
 		</div >
 	);
 }
