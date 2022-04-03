@@ -44,14 +44,11 @@ export default function Profile(props) {
                 </Modal.Header>
                 <Modal.Body className="p-4">
                     <Container>
-                        <Row>
-                            <Col
-                                xs={6}
-                                className="d-flex align-items-center justify-content-center"
-                            >
+                        <Row className="d-flex align-items-center justify-content-around">
+                            <Col xs={6} className="bg-light">
                                 <Image src={props.picture} fluid="true" />
                             </Col>
-                            <Col xs={6} className="bg-light border">
+                            <Col xs={5} className="bg-light border">
                                 <p>
                                     <b>Name:</b> {props.name}
                                 </p>
