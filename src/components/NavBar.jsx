@@ -38,7 +38,7 @@ const NavBar = (props) => {
                     <Navbar.Brand />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav>
+                        <Nav className="mx-auto">
                             <Nav.Link
                                 className="mx-auto"
                                 as={Link}
@@ -81,7 +81,6 @@ const NavBar = (props) => {
                                     </Button>
                                 </div>
                             )}
-                            <h1>Signed in as: {props.user?.displayName}</h1>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

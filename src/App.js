@@ -41,7 +41,7 @@ function App() {
 						<Route index element={<Feed />} />
 						<Route path="feed" element={<Feed />} />
 						<Route path="members" element={<Members />} />
-						<Route path="account" element={<Account />} />
+						<Route path="account" element={<Account user={user} />} />
 					</Route>
 				</Routes>
 			</Container>
