@@ -33,13 +33,14 @@ function App() {
 
 	return (
 		<Router>
+			{/* <h1>Signed in as: (username){username} and (user.displayName){user ? (user.displayName) : ("user null")}</h1> */}
 			<Header />
 			<NavBar user={user} setUser={setUser} setUsername={setUsername} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password} />
 			<Container>
 				<Routes>
 					<Route path="/">
-						<Route index element={<Feed />} />
-						<Route path="feed" element={<Feed />} />
+						<Route index element={<Feed user={user} />} />
+						<Route path="feed" element={<Feed username={user?.displayName} />} />
 						<Route path="members" element={<Members />} />
 						<Route path="account" element={<Account user={user} />} />
 					</Route>

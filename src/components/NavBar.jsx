@@ -12,7 +12,7 @@ const NavBar = (props) => {
 
         auth.createUserWithEmailAndPassword(props.email, props.password)
             .then((authUser) => {
-                return authUser.user.updateProfile({
+                authUser.user.updateProfile({
                     displayName: props.username,
                 });
             })
@@ -33,6 +33,7 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
+            {/* <h1>{auth.currentUser.email}</h1> */}
             <Navbar className="mt-3 bg-light" expand="md">
                 <Container>
                     <Navbar.Brand />
@@ -99,13 +100,9 @@ const NavBar = (props) => {
                 <Modal.Body>
                     <Container>
                         <Form>
-                            <Form.Group
-                                className="mb-3"
-                                // controlId="formBasicEmail"
-                            >
+                            <Form.Group className="mb-3">
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control
-                                    // type="email"
                                     placeholder="Enter username"
                                     type="text"
                                     value={props.username}
