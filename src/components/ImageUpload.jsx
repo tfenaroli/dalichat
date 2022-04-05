@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { db, storage } from "../firebase";
 import firebase from "firebase/compat/app";
 
@@ -60,70 +60,38 @@ export default function ImageUpload(props) {
                     </h1>
                 </Col>
             </Row>
-            <Row className="border">
-                <Col className="border d-flex justify-content-center bg-primary">
-                    <input
+            <Row className="d-flex justify-content-center">
+                <Col xs={8} className="d-flex justify-content-center">
+                    <Form.Control
+                        className="mt-3"
+                        type="text"
+                        placeholder="Enter caption"
+                        value={caption}
+                        onChange={(event) => setCaption(event.target.value)}
+                    />
+                    {/* <input
                         className="mt-3"
                         type="text"
                         placeholder="caption"
                         value={caption}
                         onChange={(event) => setCaption(event.target.value)}
-                    />
+                    /> */}
                 </Col>
             </Row>
-            <Row className="border">
+            <Row className="">
                 <Col className="d-flex justify-content-center">
                     {/* <p>progress</p> */}
                     <progress className="mt-3" value={progress} max="100" />
                 </Col>
             </Row>
-            <Row className="border d-flex justify-content-center">
-                <Col xs={3} className="text-center">
-                    <input
-                        className="mt-3"
-                        type="file"
-                        onChange={handleChange}
-                    />
+            <Row className="mt-3 d-flex justify-content-center">
+                <Col xs={3} className="border text-center">
+                    <input className="" type="file" onChange={handleChange} />
                 </Col>
-                <Col xs={3} className="text-center">
-                    <Button className="mt-3" onClick={handleUpload}>
+                <Col xs={3} className="border text-center">
+                    <Button className="" onClick={handleUpload}>
                         Upload
                     </Button>
-                </Col>
-            </Row>
-            <Row className="mt-3 justify-content-center text-center">
-                <Col xs={10}>
-                    <Row>
-                        <input
-                            className="mt-3"
-                            type="text"
-                            placeholder="caption"
-                            value={caption}
-                            onChange={(event) => setCaption(event.target.value)}
-                        />
-                        <Col>
-                            <p>progress</p>
-                            <progress
-                                className="mt-3"
-                                value={progress}
-                                max="100"
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <input
-                                className="mt-3"
-                                type="file"
-                                onChange={handleChange}
-                            />
-                        </Col>
-                        <Col>
-                            <Button className="mt-3" onClick={handleUpload}>
-                                Upload
-                            </Button>
-                        </Col>
-                    </Row>
                 </Col>
             </Row>
         </Container>
