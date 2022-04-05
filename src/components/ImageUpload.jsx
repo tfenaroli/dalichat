@@ -38,6 +38,7 @@ export default function ImageUpload(props) {
 
     return (
         <div>
+            <h1>Upload a post to DaliChat!</h1>
             <input
                 type="text"
                 placeholder="caption"

@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
+import {
+    Row,
+    Col,
+    Navbar,
+    Container,
+    Nav,
+    Form,
+    Button,
+    Modal,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 
@@ -33,13 +42,15 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            {/* <h1>{auth.currentUser.email}</h1> */}
-            <Navbar className="mt-3 bg-light" expand="md">
-                <Container>
+            <Container>
+                <Navbar className="mt-3" expand="md">
                     <Navbar.Brand />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mx-auto">
+                    <Navbar.Collapse
+                        className="d-flex justify-content-between mt-3"
+                        id="basic-navbar-nav"
+                    >
+                        <Nav>
                             <Nav.Link
                                 className="mx-auto"
                                 as={Link}
@@ -57,12 +68,15 @@ const NavBar = (props) => {
                             >
                                 Account
                             </Nav.Link>
+                        </Nav>
+                        <Nav className="text-center">
                             {props.user ? (
                                 <Button
                                     variant="outline-secondary"
                                     onClick={() => {
                                         auth.signOut();
                                     }}
+                                    className="m-2"
                                 >
                                     Logout
                                 </Button>
@@ -71,12 +85,14 @@ const NavBar = (props) => {
                                     <Button
                                         variant="outline-secondary"
                                         onClick={() => setShowSignInModal(true)}
+                                        className="m-2"
                                     >
                                         Sign In
                                     </Button>
                                     <Button
                                         variant="outline-secondary"
                                         onClick={() => setShowModal(true)}
+                                        className="m-2"
                                     >
                                         Register
                                     </Button>
@@ -84,8 +100,9 @@ const NavBar = (props) => {
                             )}
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
-            </Navbar>
+                </Navbar>
+            </Container>
+
             <Modal
                 size="lg"
                 show={showModal}
@@ -117,7 +134,6 @@ const NavBar = (props) => {
                             >
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control
-                                    // type="email"
                                     placeholder="Enter email"
                                     type="email"
                                     value={props.email}
@@ -172,7 +188,6 @@ const NavBar = (props) => {
                             >
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control
-                                    // type="email"
                                     placeholder="Enter email"
                                     type="email"
                                     value={props.email}

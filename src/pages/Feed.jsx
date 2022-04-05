@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Post from "../components/Post";
-// import ImageUpload from "../components/ImageUpload";
+import ImageUpload from "../components/ImageUpload";
 import { db } from "../firebase";
 
 export default function Feed(props) {
@@ -21,14 +21,14 @@ export default function Feed(props) {
     return (
         <div className="d-flex justify-content-center">
             <Container>
-                {/* {props.user ? (
+                {props.user ? (
                     <div>
                         <h1>Signed In!</h1>
                         <ImageUpload user={props.user} />
                     </div>
                 ) : (
                     <h1>Sign In to Post to DaliChat!</h1>
-                )} */}
+                )}
 
                 {posts.map(({ id, post }) => (
                     <Post

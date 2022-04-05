@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -17,30 +16,33 @@ function App() {
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((authUser) => {
-			if (authUser) {
-				console.log(authUser);
-				setUser(authUser);
+		const unsub = auth.onAuthStateChanged((user) => {
+			if (user) {
+				setUsername(auth.currentUser.displayName);
 			}
-			else {
-				setUser(null);
-			}
+			setUser(user);
+			// if (user) {
+			// 	console.log("registered/signed in");
+			// 	console.log(user);
+			// 	setUsername(auth.currentUser.displayName);
+			// 	setUser(user);
+			// } else {
+			// 	console.log("signed out");
+			// 	setUser(null);
+			// }
 		});
-		return () => {
-			unsubscribe();
-		}
+		return unsub;
 	}, [user, username]);
 
 	return (
 		<Router>
-			{/* <h1>Signed in as: (username){username} and (user.displayName){user ? (user.displayName) : ("user null")}</h1> */}
 			<Header />
-			<NavBar user={user} setUser={setUser} setUsername={setUsername} setEmail={setEmail} setPassword={setPassword} username={username} email={email} password={password} />
+			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
 			<Container>
 				<Routes>
 					<Route path="/">
 						<Route index element={<Feed user={user} />} />
-						<Route path="feed" element={<Feed username={user?.displayName} />} />
+						<Route path="feed" element={<Feed user={user} />} />
 						<Route path="members" element={<Members />} />
 						<Route path="account" element={<Account user={user} />} />
 					</Route>
