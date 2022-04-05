@@ -23,11 +23,12 @@ export default function Feed(props) {
             <Container>
                 {props.user ? (
                     <div>
-                        <h1>Signed In!</h1>
                         <ImageUpload user={props.user} />
                     </div>
                 ) : (
-                    <h1>Sign In to Post to DaliChat!</h1>
+                    <h1 className="mt-3 text-center">
+                        Sign In to Post to DaliChat!
+                    </h1>
                 )}
 
                 {posts.map(({ id, post }) => (

@@ -42,12 +42,12 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            <Container>
-                <Navbar className="mt-3" expand="md">
+            <Navbar className="mt-3" expand="md">
+                <Container>
                     <Navbar.Brand />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse
-                        className="d-flex justify-content-between mt-3"
+                        className="justify-content-between mt-3"
                         id="basic-navbar-nav"
                     >
                         <Nav>
@@ -100,8 +100,8 @@ const NavBar = (props) => {
                             )}
                         </Nav>
                     </Navbar.Collapse>
-                </Navbar>
-            </Container>
+                </Container>
+            </Navbar>
 
             <Modal
                 size="lg"
