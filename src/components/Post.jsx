@@ -7,6 +7,7 @@ import {
     Form,
     Button,
     Accordion,
+    Image,
 } from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
@@ -51,76 +52,73 @@ export default function Post(props) {
     }, [props.postId]);
 
     return (
-        <Container>
-            <Row className="mt-5 bg-light">
-                <Col className="d-flex justify-content-center">
-                    <Card style={{ width: "30rem" }}>
-                        <Card.Body>
-                            <Card.Title className="text-center fs-2">
-                                <b>{props.username}</b>
-                            </Card.Title>
-                        </Card.Body>
-                        <Card.Img variant="top" src={props.picture} />
-                        <Card.Body>
-                            <Card.Text>
-                                <b>{props.username}</b> {props.caption}
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Body className="bg-light border">
-                            {props.user && (
-                                <Container>
-                                    <Row>
-                                        <Col xs={8} className="text-center">
-                                            <Form.Control
-                                                className=""
-                                                type="text"
-                                                placeholder="Enter comment"
-                                                value={comment}
-                                                onChange={(event) =>
-                                                    setComment(
-                                                        event.target.value
-                                                    )
-                                                }
-                                            />
-                                        </Col>
-                                        <Col xs={4} className="text-center">
-                                            <Button onClick={handleComment}>
-                                                Post
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            )}
-                            <div className="mt-3">
-                                {comments.slice(0, 3).map((comment) => (
-                                    <p>
-                                        <b>{comment.username}</b>:{" "}
-                                        {comment.comment}
-                                    </p>
-                                ))}
-                            </div>
+        <Col className="mt-5 d-flex justify-content-center">
+            {/* <Row className="mt-5 bg-light"> */}
+            {/* <Col className="d-flex justify-content-center"> */}
+            <Card style={{ width: "30rem" }}>
+                <Card.Body>
+                    <Card.Title className="text-center fs-2">
+                        <b>{props.username}</b>
+                    </Card.Title>
+                </Card.Body>
+                <Image fluid="true" variant="top" src={props.picture} />
+                <Card.Body>
+                    <Card.Text>
+                        <b>{props.username}</b> {props.caption}
+                    </Card.Text>
+                </Card.Body>
+                <Card.Body className="bg-light border">
+                    {props.user && (
+                        <Container>
+                            <Row>
+                                <Col xs={8} className="text-center">
+                                    <Form.Control
+                                        className=""
+                                        type="text"
+                                        placeholder="Enter comment"
+                                        value={comment}
+                                        onChange={(event) =>
+                                            setComment(event.target.value)
+                                        }
+                                    />
+                                </Col>
+                                <Col xs={4} className="text-center">
+                                    <Button onClick={handleComment}>
+                                        Post
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Container>
+                    )}
+                    <div className="mt-3">
+                        {comments.slice(0, 3).map((comment) => (
+                            <p>
+                                <b>{comment.username}</b>: {comment.comment}
+                            </p>
+                        ))}
+                    </div>
 
-                            <Accordion defaultActiveKey="0">
-                                <Accordion.Item eventKey="1">
-                                    <Accordion.Header>
-                                        See All Comments
-                                    </Accordion.Header>
-                                    <Accordion.Body>
-                                        <div className="mt-2">
-                                            {comments.map((comment) => (
-                                                <p>
-                                                    <b>{comment.username}</b>:{" "}
-                                                    {comment.comment}
-                                                </p>
-                                            ))}
-                                        </div>
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            </Accordion>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+                    <Accordion defaultActiveKey="0">
+                        <Accordion.Item eventKey="1">
+                            <Accordion.Header>
+                                See All Comments
+                            </Accordion.Header>
+                            <Accordion.Body>
+                                <div className="mt-2">
+                                    {comments.map((comment) => (
+                                        <p>
+                                            <b>{comment.username}</b>:{" "}
+                                            {comment.comment}
+                                        </p>
+                                    ))}
+                                </div>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
+                </Card.Body>
+            </Card>
+            {/* </Col> */}
+            {/* </Row> */}
+        </Col>
     );
 }

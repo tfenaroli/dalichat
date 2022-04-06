@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Post from "../components/Post";
 import ImageUpload from "../components/ImageUpload";
 import { db } from "../firebase";
@@ -32,17 +32,18 @@ export default function Feed(props) {
                         Sign In to Post to DaliChat!
                     </h1>
                 )}
-
-                {posts.map(({ id, post }) => (
-                    <Post
-                        key={id}
-                        postId={id}
-                        user={props.user}
-                        username={post.username}
-                        caption={post.caption}
-                        picture={post.picture}
-                    />
-                ))}
+                <Row className="align-items-center">
+                    {posts.map(({ id, post }) => (
+                        <Post
+                            key={id}
+                            postId={id}
+                            user={props.user}
+                            username={post.username}
+                            caption={post.caption}
+                            picture={post.picture}
+                        />
+                    ))}
+                </Row>
             </Container>
         </div>
     );
