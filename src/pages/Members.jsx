@@ -7,6 +7,9 @@ export default function Members() {
     return (
         <div>
             <Container>
+                <Row className="mt-5 text-center">
+                    <h1>Learn about Dali Lab members!</h1>
+                </Row>
                 <Row>
                     {memberData.map((member) => (
                         <Profile

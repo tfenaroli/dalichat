@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-    Row,
-    Col,
-    Navbar,
-    Container,
-    Nav,
-    Form,
-    Button,
-    Modal,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 
@@ -42,12 +33,12 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            <Navbar className="mt-3" expand="md">
+            <Navbar className="mt-3 navbar" expand="md">
                 <Container>
                     <Navbar.Brand />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse
-                        className="justify-content-between mt-3"
+                        className="justify-content-between"
                         id="basic-navbar-nav"
                     >
                         <Nav>

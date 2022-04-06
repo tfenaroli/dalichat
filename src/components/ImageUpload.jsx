@@ -85,7 +85,6 @@ export default function ImageUpload(props) {
                         type="file"
                         onChange={handleChange}
                     />
-                    {/* <input className="" type="file" onChange={handleChange} /> */}
                 </Col>
                 <Col lg={3} className="mt-3 text-center">
                     <Button className="" onClick={handleUpload}>
