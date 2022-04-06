@@ -22,7 +22,7 @@ function App() {
 			}
 			setUser(user);
 		});
-		return unsub;
+		return () => { unsub() };
 	}, [user, username]);
 
 	return (

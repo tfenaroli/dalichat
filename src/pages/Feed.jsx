@@ -36,6 +36,8 @@ export default function Feed(props) {
                 {posts.map(({ id, post }) => (
                     <Post
                         key={id}
+                        postId={id}
+                        user={props.user}
                         username={post.username}
                         caption={post.caption}
                         picture={post.picture}

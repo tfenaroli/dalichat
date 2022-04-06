@@ -100,9 +100,7 @@ export default function ImageUpload(props) {
                     />
                 </Col>
                 <Col lg={3} className="mt-3 text-center">
-                    <Button className="" onClick={handleUpload}>
-                        Upload
-                    </Button>
+                    <Button onClick={handleUpload}>Upload</Button>
                 </Col>
             </Row>
         </Container>
