@@ -19,6 +19,7 @@ const NavBar = (props) => {
             .catch((error) => alert(error.message));
 
         setShowModal(false);
+        // location.reload();
     };
 
     const signIn = (event) => {

@@ -45,7 +45,7 @@ export default function Profile(props) {
                 <Modal.Body className="p-4">
                     <Container>
                         <Row className="d-flex align-items-center justify-content-around">
-                            <Col xs={6} className="bg-light">
+                            <Col xs={6}>
                                 <Image src={props.picture} fluid="true" />
                             </Col>
                             <Col xs={5} className="bg-light border">

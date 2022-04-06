@@ -15,49 +15,62 @@ export default function ImageUpload(props) {
     };
 
     const handleUpload = () => {
-        console.log("hit upload");
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const progress = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-                setProgress(progress);
-            },
-            (error) => {
-                console.log(error);
-                alert(error.message);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then((picture) => {
-                        db.collection("posts").add({
-                            timestamp:
-                                firebase.firestore.FieldValue.serverTimestamp(),
-                            username: props.user?.displayName,
+        if (caption === "") {
+            alert("Empty caption!");
+        }
+        if (image) {
+            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setProgress(progress);
+                },
+                (error) => {
+                    console.log(error);
+                    alert(error.message);
+                },
+                () => {
+                    storage
+                        .ref("images")
+                        .child(image.name)
+                        .getDownloadURL()
+                        .then((picture) => {
+                            db.collection("posts").add({
+                                timestamp:
+                                    firebase.firestore.FieldValue.serverTimestamp(),
+                                username: props.user?.displayName,
 
-                            picture: picture,
-                            caption: caption,
+                                picture: picture,
+                                caption: caption,
+                            });
+
+                            setCaption("");
+                            setImage(null);
                         });
+                }
+            );
+        } else {
+            db.collection("posts").add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                username: props.user?.displayName,
 
-                        setCaption("");
-                        setImage(null);
-                    });
-            }
-        );
+                picture: "",
+                caption: caption,
+            });
+
+            setCaption("");
+            setImage(null);
+        }
     };
 
     return (
         <Container className="mt-5 border bg-light">
             <Row className="mt-3">
                 <Col className="text-center">
-                    <h1>
-                        Upload a post to DaliChat as {props.user?.displayName}!
-                    </h1>
+                    <h1>Upload a post to DaliChat as {props.user?.email}!</h1>
                 </Col>
             </Row>
             <Row className="">
@@ -79,6 +92,7 @@ export default function ImageUpload(props) {
 
             <Row className="mb-3 d-flex justify-content-center">
                 <Col lg={3} className="mt-3 text-center">
+                    <p>(Image optional!)</p>
                     <Form.Control
                         size="sm"
                         type="file"
