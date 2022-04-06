@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
+import {
+    Container,
+    Row,
+    Col,
+    Card,
+    Form,
+    Button,
+    Accordion,
+} from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 
@@ -10,12 +18,19 @@ export default function Post(props) {
     const handleComment = (event) => {
         event.preventDefault();
 
-        db.collection("posts").doc(props.postId).collection("comments").add({
-            username: props.user.displayName,
-            comment: comment,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        setComment("");
+        if (comment === "") {
+            alert("Empty comment!");
+        } else {
+            db.collection("posts")
+                .doc(props.postId)
+                .collection("comments")
+                .add({
+                    username: props.user.displayName,
+                    comment: comment,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                });
+            setComment("");
+        }
     };
 
     useEffect(() => {
@@ -25,7 +40,7 @@ export default function Post(props) {
                 .collection("posts")
                 .doc(props.postId)
                 .collection("comments")
-                .orderBy("timestamp", "asc")
+                .orderBy("timestamp", "desc")
                 .onSnapshot((snapshot) => {
                     setComments(snapshot.docs.map((doc) => doc.data()));
                 });
@@ -47,31 +62,61 @@ export default function Post(props) {
                         </Card.Body>
                         <Card.Img variant="top" src={props.picture} />
                         <Card.Body>
-                            <Card.Text>{props.caption}</Card.Text>
+                            <Card.Text>
+                                <b>{props.username}</b> {props.caption}
+                            </Card.Text>
                         </Card.Body>
-                        <Card.Body>
+                        <Card.Body className="bg-light border">
                             {props.user && (
-                                <div>
-                                    <Form.Control
-                                        className=""
-                                        type="text"
-                                        placeholder="Enter comment"
-                                        value={comment}
-                                        onChange={(event) =>
-                                            setComment(event.target.value)
-                                        }
-                                    />
-                                    <Button onClick={handleComment}>
-                                        Post
-                                    </Button>
-                                </div>
+                                <Container>
+                                    <Row>
+                                        <Col xs={8} className="text-center">
+                                            <Form.Control
+                                                className=""
+                                                type="text"
+                                                placeholder="Enter comment"
+                                                value={comment}
+                                                onChange={(event) =>
+                                                    setComment(
+                                                        event.target.value
+                                                    )
+                                                }
+                                            />
+                                        </Col>
+                                        <Col xs={4} className="text-center">
+                                            <Button onClick={handleComment}>
+                                                Post
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Container>
                             )}
+                            <div className="mt-3">
+                                {comments.slice(0, 3).map((comment) => (
+                                    <p>
+                                        <b>{comment.username}</b>:{" "}
+                                        {comment.comment}
+                                    </p>
+                                ))}
+                            </div>
 
-                            {comments.map((comment) => (
-                                <p>
-                                    <b>{comment.username}</b>: {comment.comment}
-                                </p>
-                            ))}
+                            <Accordion defaultActiveKey="0">
+                                <Accordion.Item eventKey="1">
+                                    <Accordion.Header>
+                                        See All Comments
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <div className="mt-2">
+                                            {comments.map((comment) => (
+                                                <p>
+                                                    <b>{comment.username}</b>:{" "}
+                                                    {comment.comment}
+                                                </p>
+                                            ))}
+                                        </div>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
                         </Card.Body>
                     </Card>
                 </Col>
