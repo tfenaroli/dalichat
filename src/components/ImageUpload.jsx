@@ -52,12 +52,18 @@ export default function ImageUpload(props) {
     };
 
     return (
-        <Container className="mt-3 border bg-light p-4">
-            <Row>
+        <Container className="mt-3 border bg-light">
+            <Row className="mt-3">
                 <Col className="text-center">
                     <h1>
                         Upload a post to DaliChat as {props.user?.displayName}!
                     </h1>
+                </Col>
+            </Row>
+            <Row className="">
+                <Col className="d-flex justify-content-center">
+                    {/* <p>progress</p> */}
+                    <progress className="mt-3" value={progress} max="100" />
                 </Col>
             </Row>
             <Row className="d-flex justify-content-center">
@@ -69,26 +75,19 @@ export default function ImageUpload(props) {
                         value={caption}
                         onChange={(event) => setCaption(event.target.value)}
                     />
-                    {/* <input
-                        className="mt-3"
-                        type="text"
-                        placeholder="caption"
-                        value={caption}
-                        onChange={(event) => setCaption(event.target.value)}
-                    /> */}
                 </Col>
             </Row>
-            <Row className="">
-                <Col className="d-flex justify-content-center">
-                    {/* <p>progress</p> */}
-                    <progress className="mt-3" value={progress} max="100" />
+
+            <Row className="mb-3 d-flex justify-content-center">
+                <Col lg={3} className="mt-3 text-center">
+                    <Form.Control
+                        size="sm"
+                        type="file"
+                        onChange={handleChange}
+                    />
+                    {/* <input className="" type="file" onChange={handleChange} /> */}
                 </Col>
-            </Row>
-            <Row className="mt-3 d-flex justify-content-center">
-                <Col xs={3} className="border text-center">
-                    <input className="" type="file" onChange={handleChange} />
-                </Col>
-                <Col xs={3} className="border text-center">
+                <Col lg={3} className="mt-3 text-center">
                     <Button className="" onClick={handleUpload}>
                         Upload
                     </Button>
