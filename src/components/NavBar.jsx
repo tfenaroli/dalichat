@@ -33,7 +33,7 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            <Navbar className="mt-3 navbar" expand="md">
+            <Navbar className="mt-3 navbar bg-light" expand="md">
                 <Container>
                     <Navbar.Brand />
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

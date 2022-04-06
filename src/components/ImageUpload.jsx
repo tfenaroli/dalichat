@@ -52,7 +52,7 @@ export default function ImageUpload(props) {
     };
 
     return (
-        <Container className="mt-3 border bg-light">
+        <Container className="mt-5 border bg-light">
             <Row className="mt-3">
                 <Col className="text-center">
                     <h1>
@@ -62,7 +62,6 @@ export default function ImageUpload(props) {
             </Row>
             <Row className="">
                 <Col className="d-flex justify-content-center">
-                    {/* <p>progress</p> */}
                     <progress className="mt-3" value={progress} max="100" />
                 </Col>
             </Row>

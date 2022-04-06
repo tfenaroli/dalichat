@@ -21,15 +21,6 @@ function App() {
 				setUsername(auth.currentUser.displayName);
 			}
 			setUser(user);
-			// if (user) {
-			// 	console.log("registered/signed in");
-			// 	console.log(user);
-			// 	setUsername(auth.currentUser.displayName);
-			// 	setUser(user);
-			// } else {
-			// 	console.log("signed out");
-			// 	setUser(null);
-			// }
 		});
 		return unsub;
 	}, [user, username]);

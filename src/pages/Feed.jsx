@@ -26,7 +26,7 @@ export default function Feed(props) {
                         <ImageUpload user={props.user} />
                     </div>
                 ) : (
-                    <h1 className="mt-3 text-center">
+                    <h1 className="mt-5 text-center">
                         Sign In to Post to DaliChat!
                     </h1>
                 )}
