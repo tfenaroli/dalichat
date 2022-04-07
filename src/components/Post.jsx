@@ -56,9 +56,14 @@ export default function Post(props) {
             return (
                 <Accordion defaultActiveKey="0" className="mb-3">
                     <Accordion.Item eventKey="1">
-                        <Accordion.Header>See All Comments</Accordion.Header>
+                        <Accordion.Header>
+                            See All Comments (Scrollable)
+                        </Accordion.Header>
                         <Accordion.Body>
-                            <div className="mt-2">
+                            <div
+                                className="mt-2"
+                                style={{ overflowY: "auto", height: "10rem" }}
+                            >
                                 {comments.map((comment) => (
                                     <p>
                                         <b>{comment.username}</b>:{" "}
@@ -87,7 +92,8 @@ export default function Post(props) {
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                <Card.Body className="bg-lightpt-3 pb-0 border">
+                <Card.Body className="bg-light pt-3 pb-0 border">
+                    <p>Comments:</p>
                     {props.user && (
                         <Container>
                             <Row>

@@ -17,52 +17,56 @@ export default function ImageUpload(props) {
     const handleUpload = () => {
         if (caption === "") {
             alert("Empty caption!");
-        }
-        if (image) {
-            const uploadTask = storage.ref(`images/${image.name}`).put(image);
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const progress = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
-                    setProgress(progress);
-                },
-                (error) => {
-                    console.log(error);
-                    alert(error.message);
-                },
-                () => {
-                    storage
-                        .ref("images")
-                        .child(image.name)
-                        .getDownloadURL()
-                        .then((picture) => {
-                            db.collection("posts").add({
-                                timestamp:
-                                    firebase.firestore.FieldValue.serverTimestamp(),
-                                username: props.user?.displayName,
-
-                                picture: picture,
-                                caption: caption,
-                            });
-
-                            setCaption("");
-                            setImage(null);
-                        });
-                }
-            );
         } else {
-            db.collection("posts").add({
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                username: props.user?.displayName,
+            if (image) {
+                const uploadTask = storage
+                    .ref(`images/${image.name}`)
+                    .put(image);
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        const progress = Math.round(
+                            (snapshot.bytesTransferred / snapshot.totalBytes) *
+                                100
+                        );
+                        setProgress(progress);
+                    },
+                    (error) => {
+                        console.log(error);
+                        alert(error.message);
+                    },
+                    () => {
+                        storage
+                            .ref("images")
+                            .child(image.name)
+                            .getDownloadURL()
+                            .then((picture) => {
+                                db.collection("posts").add({
+                                    timestamp:
+                                        firebase.firestore.FieldValue.serverTimestamp(),
+                                    username: props.user?.displayName,
 
-                picture: "",
-                caption: caption,
-            });
+                                    picture: picture,
+                                    caption: caption,
+                                });
 
-            setCaption("");
-            setImage(null);
+                                setCaption("");
+                                setImage(null);
+                            });
+                    }
+                );
+            } else {
+                db.collection("posts").add({
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    username: props.user?.displayName,
+
+                    picture: "",
+                    caption: caption,
+                });
+
+                setCaption("");
+                setImage(null);
+            }
         }
     };
 
@@ -103,11 +107,11 @@ export default function ImageUpload(props) {
                     {caption === "" ? (
                         <div>
                             <Button onClick={handleUpload} disabled>
-                                Post
+                                Upload
                             </Button>
                         </div>
                     ) : (
-                        <Button onClick={handleUpload}>Post</Button>
+                        <Button onClick={handleUpload}>Upload</Button>
                     )}
                 </Col>
             </Row>
