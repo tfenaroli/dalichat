@@ -51,10 +51,30 @@ export default function Post(props) {
         };
     }, [props.postId]);
 
+    const renderAccordion = () => {
+        if (comments.length > 3) {
+            return (
+                <Accordion defaultActiveKey="0" className="mb-3">
+                    <Accordion.Item eventKey="1">
+                        <Accordion.Header>See All Comments</Accordion.Header>
+                        <Accordion.Body>
+                            <div className="mt-2">
+                                {comments.map((comment) => (
+                                    <p>
+                                        <b>{comment.username}</b>:{" "}
+                                        {comment.comment}
+                                    </p>
+                                ))}
+                            </div>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+            );
+        }
+    };
+
     return (
         <Col className="mt-5 d-flex justify-content-center">
-            {/* <Row className="mt-5 bg-light"> */}
-            {/* <Col className="d-flex justify-content-center"> */}
             <Card style={{ width: "30rem" }}>
                 <Card.Body>
                     <Card.Title className="text-center fs-2">
@@ -67,7 +87,7 @@ export default function Post(props) {
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                <Card.Body className="bg-light border">
+                <Card.Body className="bg-lightpt-3 pb-0 border">
                     {props.user && (
                         <Container>
                             <Row>
@@ -83,9 +103,20 @@ export default function Post(props) {
                                     />
                                 </Col>
                                 <Col xs={4} className="text-center">
-                                    <Button onClick={handleComment}>
-                                        Post
-                                    </Button>
+                                    {comment === "" ? (
+                                        <div>
+                                            <Button
+                                                onClick={handleComment}
+                                                disabled
+                                            >
+                                                Post
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Button onClick={handleComment}>
+                                            Post
+                                        </Button>
+                                    )}
                                 </Col>
                             </Row>
                         </Container>
@@ -97,28 +128,11 @@ export default function Post(props) {
                             </p>
                         ))}
                     </div>
+                    {renderAccordion()}
 
-                    <Accordion defaultActiveKey="0">
-                        <Accordion.Item eventKey="1">
-                            <Accordion.Header>
-                                See All Comments
-                            </Accordion.Header>
-                            <Accordion.Body>
-                                <div className="mt-2">
-                                    {comments.map((comment) => (
-                                        <p>
-                                            <b>{comment.username}</b>:{" "}
-                                            {comment.comment}
-                                        </p>
-                                    ))}
-                                </div>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
+                    {comments.length > 3 ?? <p>more than 3 comments</p>}
                 </Card.Body>
             </Card>
-            {/* </Col> */}
-            {/* </Row> */}
         </Col>
     );
 }
