@@ -10,7 +10,7 @@ export default function Account(props) {
                         {props.user ? (
                             <h1>Signed in as: {props.user?.email}</h1>
                         ) : (
-                            <h1>Sign In to view your account!</h1>
+                            <h1>Sign in to view your account!</h1>
                         )}
                     </Col>
                 </Row>

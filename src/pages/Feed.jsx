@@ -29,7 +29,7 @@ export default function Feed(props) {
                     </div>
                 ) : (
                     <h1 className="mt-5 text-center">
-                        Sign In to Post to DaliChat!
+                        Sign in to Post to DaliChat!
                     </h1>
                 )}
                 <Row className="align-items-center">
