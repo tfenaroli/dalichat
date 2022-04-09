@@ -74,7 +74,12 @@ export default function ImageUpload(props) {
         <Container className="mt-5 border bg-light">
             <Row className="mt-3">
                 <Col className="text-center">
-                    <h1>Upload a post to DaliChat as {props.user?.email}!</h1>
+                    <h1>Upload a post about DALI Lab!</h1>
+                </Col>
+            </Row>
+            <Row className="mt-2">
+                <Col className="text-center">
+                    <h5 className="text-muted">{props.user?.email}</h5>
                 </Col>
             </Row>
             <Row className="">
