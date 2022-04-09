@@ -136,7 +136,7 @@ export default function Post(props) {
                     </div>
                     {renderAccordion()}
 
-                    {comments.length > 3 ?? <p>more than 3 comments</p>}
+                    {/* {comments.length > 3 ?? <p>more than 3 comments</p>} */}
                 </Card.Body>
             </Card>
         </Row>
