@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
+// import "../app.css";
 
 export default function Post(props) {
     const [comments, setComments] = useState([]);

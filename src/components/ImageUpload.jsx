@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { db, storage } from "../firebase";
 import firebase from "firebase/compat/app";
+// import "../app.css";
 
 export default function ImageUpload(props) {
     const [caption, setCaption] = useState("");
