@@ -10,6 +10,7 @@ export default function Account(props) {
         if (props.user !== null) {
             db.collection("posts")
                 .where("username", "==", props.user?.displayName)
+                .orderBy("timestamp", "desc")
                 .onSnapshot((snapshot) => {
                     setPosts(
                         snapshot.docs.map((doc) => ({
