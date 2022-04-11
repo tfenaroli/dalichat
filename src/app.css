@@ -1,3 +1,9 @@
-.card-bg {
-    background-color: #c4e7e6;
+* {
+    /* background-color: blue; */
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
 }

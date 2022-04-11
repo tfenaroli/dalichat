@@ -8,6 +8,7 @@ import Members from "./pages/Members";
 import Feed from "./pages/Feed";
 import Account from "./pages/Account"
 import { auth } from "./firebase"
+import "./app.css"
 
 function App() {
 	const [username, setUsername] = useState("");
@@ -35,7 +36,7 @@ function App() {
 						variant="outline-secondary"
 						onClick={() => setShowModal(true)}
 					>
-						About DaliChat!
+						About
 					</Button>
 				</Col>
 			</Row>
