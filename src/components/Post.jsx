@@ -8,6 +8,7 @@ import {
     Button,
     Accordion,
     Image,
+    Modal,
 } from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
@@ -16,7 +17,8 @@ import firebase from "firebase/compat/app";
 export default function Post(props) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
-    const [likes, setLikes] = useState(0);
+    const [reactions, setReactions] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const handleComment = (event) => {
         event.preventDefault();
@@ -36,25 +38,38 @@ export default function Post(props) {
         }
     };
 
-    useEffect(() => {
-        db.collection("posts")
-            .doc(props.postId)
-            .onSnapshot((doc) => {
-                setLikes(doc.data().likes);
-                // console.log("Current data: ", doc.data().likes);
-            });
-    }, []);
-
     const handleLike = () => {
-        setLikes(likes + 1);
-        db.collection("posts").doc(props.postId).update({
-            likes: likes,
+        db.collection("posts").doc(props.postId).collection("reactions").add({
+            username: props.user.displayName,
+            reaction: "like",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         });
     };
 
     const handleDislike = () => {
-        // setLikes(likes - 1);
+        db.collection("posts").doc(props.postId).collection("reactions").add({
+            username: props.user.displayName,
+            reaction: "dislike",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
     };
+
+    useEffect(() => {
+        let unsub;
+        if (props.postId) {
+            unsub = db
+                .collection("posts")
+                .doc(props.postId)
+                .collection("reactions")
+                .orderBy("timestamp", "desc")
+                .onSnapshot((snapshot) => {
+                    setReactions(snapshot.docs.map((doc) => doc.data()));
+                });
+        }
+        return () => {
+            unsub();
+        };
+    }, [props.postId]);
 
     useEffect(() => {
         let unsub;
@@ -109,33 +124,47 @@ export default function Post(props) {
                     </Card.Title>
                 </Card.Body>
                 <Image fluid="true" variant="top" src={props.picture} />
-                <Container>
-                    <Row className="mt-4 d-flex justify-content-center">
-                        <Col xs={2} className="text-center">
-                            <Button
-                                variant="outline-primary"
-                                onClick={handleLike}
-                            >
-                                <i class="bi bi-hand-thumbs-up"></i>
-                            </Button>
-                        </Col>
-                        <Col xs={2} className="text-center">
-                            <Button
-                                variant="outline-danger"
-                                onClick={handleDislike}
-                            >
-                                <i class="bi bi-hand-thumbs-down"></i>
-                            </Button>
-                        </Col>
-                    </Row>
-                </Container>
-                <p>{likes}</p>
+
                 <Card.Body>
                     <Card.Text>
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                <Card.Body className="bg-light pt-3 pb-0">
+                <Container>
+                    <Row className="d-flex justify-content-around">
+                        <Col>
+                            <Row>
+                                <Col xs={2} className="text-center">
+                                    <Button
+                                        variant="outline-success"
+                                        onClick={handleLike}
+                                    >
+                                        <i className="bi bi-hand-thumbs-up"></i>
+                                    </Button>
+                                </Col>
+                                <Col xs={2} className="text-center">
+                                    <Button
+                                        variant="outline-danger"
+                                        onClick={handleDislike}
+                                    >
+                                        <i className="bi bi-hand-thumbs-down"></i>
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+
+                        <Col xs={4}>
+                            <Button
+                                variant="outline-secondary"
+                                onClick={() => setShowModal(true)}
+                            >
+                                Reactions
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
+
+                <Card.Body className="mt-4 bg-light pt-3 pb-0">
                     <p>Comments:</p>
                     {props.user && (
                         <Container>
@@ -178,10 +207,49 @@ export default function Post(props) {
                         ))}
                     </div>
                     {renderAccordion()}
-
-                    {/* {comments.length > 3 ?? <p>more than 3 comments</p>} */}
                 </Card.Body>
             </Card>
+            <Modal
+                size="lg"
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-modal-sizes-title-sm">
+                        Reactions!
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Container>
+                        <Row>
+                            {reactions.map((reaction) => {
+                                if (reaction.reaction === "like") {
+                                    return (
+                                        <Col className="text-center">
+                                            <i
+                                                className="bi bi-hand-thumbs-up-fill text-success"
+                                                style={{ fontSize: "2rem" }}
+                                            ></i>
+                                            <p>{reaction.username}</p>
+                                        </Col>
+                                    );
+                                } else if (reaction.reaction === "dislike") {
+                                    return (
+                                        <Col className="text-center">
+                                            <i
+                                                className="bi bi-hand-thumbs-down-fill text-danger"
+                                                style={{ fontSize: "2rem" }}
+                                            ></i>
+                                            <p>{reaction.username}</p>
+                                        </Col>
+                                    );
+                                }
+                            })}
+                        </Row>
+                    </Container>
+                </Modal.Body>
+            </Modal>
         </Col>
     );
 }
