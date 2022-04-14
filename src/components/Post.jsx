@@ -129,9 +129,10 @@ export default function Post(props) {
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                {props.user && (
-                    <Container>
-                        <Row className="mb-3 d-flex justify-content-around">
+
+                <Container>
+                    <Row className="mb-3 d-flex justify-content-around">
+                        {props.user && (
                             <Col>
                                 <Row>
                                     <Col xs={3} className="text-center">
@@ -154,18 +155,18 @@ export default function Post(props) {
                                     </Col>
                                 </Row>
                             </Col>
+                        )}
 
-                            <Col xs={4}>
-                                <Button
-                                    variant="outline-secondary"
-                                    onClick={() => setShowModal(true)}
-                                >
-                                    Reactions
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                )}
+                        <Col xs={4}>
+                            <Button
+                                variant="outline-secondary"
+                                onClick={() => setShowModal(true)}
+                            >
+                                Reactions
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
 
                 <Card.Body className="bg-light pt-3 pb-0">
                     <p>Comments:</p>

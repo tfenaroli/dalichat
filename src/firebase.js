@@ -7,13 +7,12 @@ import "firebase/compat/auth";
 import "firebase/compat/storage";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyB6NotnVnxU-YBkW4WaJZoAA-Lbcu2DroY",
-	authDomain: "social-media-app-f6c24.firebaseapp.com",
-	projectId: "social-media-app-f6c24",
-	storageBucket: "social-media-app-f6c24.appspot.com",
-	messagingSenderId: "1084402219822",
-	appId: "1:1084402219822:web:6f105ae56a775e165218bf",
-	measurementId: "G-GSW3LYCX7K"
+	apiKey: "AIzaSyCoaWHFnptddpmugZ9wQ0nVTK-asUUUdGI",
+	authDomain: "dalichat-e20c9.firebaseapp.com",
+	projectId: "dalichat-e20c9",
+	storageBucket: "dalichat-e20c9.appspot.com",
+	messagingSenderId: "711880390196",
+	appId: "1:711880390196:web:d476b65859e879ad627c61"
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
