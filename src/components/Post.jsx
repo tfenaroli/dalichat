@@ -130,41 +130,43 @@ export default function Post(props) {
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                <Container>
-                    <Row className="d-flex justify-content-around">
-                        <Col>
-                            <Row>
-                                <Col xs={2} className="text-center">
-                                    <Button
-                                        variant="outline-success"
-                                        onClick={handleLike}
-                                    >
-                                        <i className="bi bi-hand-thumbs-up"></i>
-                                    </Button>
-                                </Col>
-                                <Col xs={2} className="text-center">
-                                    <Button
-                                        variant="outline-danger"
-                                        onClick={handleDislike}
-                                    >
-                                        <i className="bi bi-hand-thumbs-down"></i>
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </Col>
+                {props.user && (
+                    <Container>
+                        <Row className="mb-3 d-flex justify-content-around">
+                            <Col>
+                                <Row>
+                                    <Col xs={2} className="text-center">
+                                        <Button
+                                            variant="outline-success"
+                                            onClick={handleLike}
+                                        >
+                                            <i className="bi bi-hand-thumbs-up"></i>
+                                        </Button>
+                                    </Col>
+                                    <Col xs={2} className="text-center">
+                                        <Button
+                                            variant="outline-danger"
+                                            onClick={handleDislike}
+                                        >
+                                            <i className="bi bi-hand-thumbs-down"></i>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Col>
 
-                        <Col xs={4}>
-                            <Button
-                                variant="outline-secondary"
-                                onClick={() => setShowModal(true)}
-                            >
-                                Reactions
-                            </Button>
-                        </Col>
-                    </Row>
-                </Container>
+                            <Col xs={4}>
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={() => setShowModal(true)}
+                                >
+                                    Reactions
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                )}
 
-                <Card.Body className="mt-4 bg-light pt-3 pb-0">
+                <Card.Body className="bg-light pt-3 pb-0">
                     <p>Comments:</p>
                     {props.user && (
                         <Container>
