@@ -8,14 +8,16 @@ import {
     Button,
     Accordion,
     Image,
+    Modal,
 } from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
-// import "../app.css";
 
 export default function Post(props) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
+    const [reactions, setReactions] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     const handleComment = (event) => {
         event.preventDefault();
@@ -34,6 +36,39 @@ export default function Post(props) {
             setComment("");
         }
     };
+
+    const handleLike = () => {
+        db.collection("posts").doc(props.postId).collection("reactions").add({
+            username: props.user.displayName,
+            reaction: "like",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+    };
+
+    const handleDislike = () => {
+        db.collection("posts").doc(props.postId).collection("reactions").add({
+            username: props.user.displayName,
+            reaction: "dislike",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+    };
+
+    useEffect(() => {
+        let unsub;
+        if (props.postId) {
+            unsub = db
+                .collection("posts")
+                .doc(props.postId)
+                .collection("reactions")
+                .orderBy("timestamp", "desc")
+                .onSnapshot((snapshot) => {
+                    setReactions(snapshot.docs.map((doc) => doc.data()));
+                });
+        }
+        return () => {
+            unsub();
+        };
+    }, [props.postId]);
 
     useEffect(() => {
         let unsub;
@@ -88,11 +123,50 @@ export default function Post(props) {
                     </Card.Title>
                 </Card.Body>
                 <Image fluid="true" variant="top" src={props.picture} />
+
                 <Card.Body>
                     <Card.Text>
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
+                {props.user && (
+                    <Container>
+                        <Row className="mb-3 d-flex justify-content-around">
+                            <Col>
+                                <Row>
+                                    <Col xs={3} className="text-center">
+                                        <Button
+                                            className=""
+                                            variant="outline-success"
+                                            onClick={handleLike}
+                                        >
+                                            <i className="bi bi-hand-thumbs-up"></i>
+                                        </Button>
+                                    </Col>
+                                    <Col xs={3} className="text-center">
+                                        <Button
+                                            className=""
+                                            variant="outline-danger"
+                                            onClick={handleDislike}
+                                        >
+                                            <i className="bi bi-hand-thumbs-down"></i>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Col>
+
+                            <Col xs={4}>
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={() => setShowModal(true)}
+                                >
+                                    Reactions
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                )}
+
                 <Card.Body className="bg-light pt-3 pb-0">
                     <p>Comments:</p>
                     {props.user && (
@@ -136,10 +210,49 @@ export default function Post(props) {
                         ))}
                     </div>
                     {renderAccordion()}
-
-                    {/* {comments.length > 3 ?? <p>more than 3 comments</p>} */}
                 </Card.Body>
             </Card>
+            <Modal
+                size="lg"
+                show={showModal}
+                onHide={() => setShowModal(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="example-modal-sizes-title-sm">
+                        Reactions!
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Container>
+                        <Row>
+                            {reactions.map((reaction) => {
+                                if (reaction.reaction === "like") {
+                                    return (
+                                        <Col className="text-center">
+                                            <i
+                                                className="bi bi-hand-thumbs-up-fill text-success"
+                                                style={{ fontSize: "2rem" }}
+                                            ></i>
+                                            <p>{reaction.username}</p>
+                                        </Col>
+                                    );
+                                } else {
+                                    return (
+                                        <Col className="text-center">
+                                            <i
+                                                className="bi bi-hand-thumbs-down-fill text-danger"
+                                                style={{ fontSize: "2rem" }}
+                                            ></i>
+                                            <p>{reaction.username}</p>
+                                        </Col>
+                                    );
+                                }
+                            })}
+                        </Row>
+                    </Container>
+                </Modal.Body>
+            </Modal>
         </Col>
     );
 }
