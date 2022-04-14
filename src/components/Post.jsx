@@ -12,7 +12,6 @@ import {
 } from "react-bootstrap";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
-// import "../app.css";
 
 export default function Post(props) {
     const [comments, setComments] = useState([]);
@@ -135,16 +134,18 @@ export default function Post(props) {
                         <Row className="mb-3 d-flex justify-content-around">
                             <Col>
                                 <Row>
-                                    <Col xs={2} className="text-center">
+                                    <Col xs={3} className="text-center">
                                         <Button
+                                            className=""
                                             variant="outline-success"
                                             onClick={handleLike}
                                         >
                                             <i className="bi bi-hand-thumbs-up"></i>
                                         </Button>
                                     </Col>
-                                    <Col xs={2} className="text-center">
+                                    <Col xs={3} className="text-center">
                                         <Button
+                                            className=""
                                             variant="outline-danger"
                                             onClick={handleDislike}
                                         >
@@ -236,7 +237,7 @@ export default function Post(props) {
                                             <p>{reaction.username}</p>
                                         </Col>
                                     );
-                                } else if (reaction.reaction === "dislike") {
+                                } else {
                                     return (
                                         <Col className="text-center">
                                             <i
