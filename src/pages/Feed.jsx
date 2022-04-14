@@ -32,7 +32,7 @@ export default function Feed(props) {
                         Sign in to Post to DaliChat!
                     </h1>
                 )}
-                <Row className="align-items-center">
+                <Row>
                     {posts.map(({ id, post }) => (
                         <Post
                             key={id}

@@ -80,7 +80,7 @@ export default function Post(props) {
     };
 
     return (
-        <Row className="mt-5 d-flex justify-content-center">
+        <Col xs={12} className="mt-5 d-flex justify-content-center">
             <Card style={{ width: "30rem" }}>
                 <Card.Body>
                     <Card.Title className="text-center fs-2">
@@ -93,7 +93,7 @@ export default function Post(props) {
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>
                 </Card.Body>
-                <Card.Body className="mb-3 bg-light pt-3 pb-0 border">
+                <Card.Body className="bg-light pt-3 pb-0">
                     <p>Comments:</p>
                     {props.user && (
                         <Container>
@@ -140,6 +140,6 @@ export default function Post(props) {
                     {/* {comments.length > 3 ?? <p>more than 3 comments</p>} */}
                 </Card.Body>
             </Card>
-        </Row>
+        </Col>
     );
 }
