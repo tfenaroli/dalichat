@@ -16,6 +16,7 @@ import firebase from "firebase/compat/app";
 export default function Post(props) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
+    const [likes, setLikes] = useState(0);
 
     const handleComment = (event) => {
         event.preventDefault();
@@ -33,6 +34,26 @@ export default function Post(props) {
                 });
             setComment("");
         }
+    };
+
+    useEffect(() => {
+        db.collection("posts")
+            .doc(props.postId)
+            .onSnapshot((doc) => {
+                setLikes(doc.data().likes);
+                // console.log("Current data: ", doc.data().likes);
+            });
+    }, []);
+
+    const handleLike = () => {
+        setLikes(likes + 1);
+        db.collection("posts").doc(props.postId).update({
+            likes: likes,
+        });
+    };
+
+    const handleDislike = () => {
+        // setLikes(likes - 1);
     };
 
     useEffect(() => {
@@ -88,6 +109,27 @@ export default function Post(props) {
                     </Card.Title>
                 </Card.Body>
                 <Image fluid="true" variant="top" src={props.picture} />
+                <Container>
+                    <Row className="mt-4 d-flex justify-content-center">
+                        <Col xs={2} className="text-center">
+                            <Button
+                                variant="outline-primary"
+                                onClick={handleLike}
+                            >
+                                <i class="bi bi-hand-thumbs-up"></i>
+                            </Button>
+                        </Col>
+                        <Col xs={2} className="text-center">
+                            <Button
+                                variant="outline-danger"
+                                onClick={handleDislike}
+                            >
+                                <i class="bi bi-hand-thumbs-down"></i>
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
+                <p>{likes}</p>
                 <Card.Body>
                     <Card.Text>
                         <b>{props.username}</b> {props.caption}
