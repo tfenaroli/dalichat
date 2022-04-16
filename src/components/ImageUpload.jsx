@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { db, storage } from "../firebase";
 import firebase from "firebase/compat/app";
+import { v4 as uuidv4 } from "uuid";
 // import "../app.css";
 
 export default function ImageUpload(props) {
@@ -11,7 +12,12 @@ export default function ImageUpload(props) {
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
-            setImage(e.target.files[0]);
+            let name = uuidv4();
+            name += ".jpg";
+            var newFile = new File([e.target.files[0]], name, {
+                type: "image/jpg",
+            });
+            setImage(newFile);
         }
     };
 
@@ -20,6 +26,7 @@ export default function ImageUpload(props) {
             alert("Empty caption!");
         } else {
             if (image) {
+                console.log("image name is: " + image.name);
                 const uploadTask = storage
                     .ref(`images/${image.name}`)
                     .put(image);
