@@ -1,6 +1,4 @@
-# Project Title
-
-DALIChat
+# DALIChat
 
 ## Description
 
