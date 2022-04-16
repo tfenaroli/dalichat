@@ -22,7 +22,7 @@ DALIChat is a social media platform for users to learn about DALI Lab members an
 npm start
 ```
 * to run DALIChat on localhost
-* view DALIChat at www.dalisocial.netlify.app
+* view DALIChat at https://dalisocial.netlify.app
 
 ## Help
 
