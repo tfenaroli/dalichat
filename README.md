@@ -32,10 +32,10 @@ npm start
 
 Contributors names and contact info
 
-Thomas Fenaroli
-thomas.s.fenaroli.24@dartmouth.edu
-tfenaroli@icloud.com
-(203)-832-5002
+* Thomas Fenaroli
+* thomas.s.fenaroli.24@dartmouth.edu
+* tfenaroli@icloud.com
+* (203)-832-5002
 
 ## License
 
