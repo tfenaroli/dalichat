@@ -34,7 +34,3 @@ Contributors names and contact info
 * thomas.s.fenaroli.24@dartmouth.edu
 * tfenaroli@icloud.com
 * (203)-832-5002
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
