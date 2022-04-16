@@ -11,7 +11,12 @@ export default function ImageUpload(props) {
 
     const handleChange = (e) => {
         if (e.target.files[0]) {
-            setImage(e.target.files[0]);
+            let name = Math.random().toString(36);
+            name += ".jpg";
+            var newFile = new File([e.target.files[0]], name, {
+                type: "image/jpg",
+            });
+            setImage(newFile);
         }
     };
 
@@ -20,6 +25,12 @@ export default function ImageUpload(props) {
             alert("Empty caption!");
         } else {
             if (image) {
+                // if (image.name === "image.jpg") {
+                // image.name = Math.random().toString(36);
+                // image.name += ".jpg";
+                //     console.log("changed name is: " + image.name);
+                // }
+                console.log("unchanged name is: " + image.name);
                 const uploadTask = storage
                     .ref(`images/${image.name}`)
                     .put(image);
