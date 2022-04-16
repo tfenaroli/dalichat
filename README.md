@@ -10,8 +10,7 @@ DALIChat is a social media platform for users to learn about DALI Lab members an
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Node modules and dependencies included in repository
 
 ### Installing
 
