@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
+import logo from "../DALICHAT.png";
 
 const NavBar = (props) => {
     const [showModal, setShowModal] = useState(false);
@@ -35,7 +36,9 @@ const NavBar = (props) => {
         <React.Fragment>
             <Navbar className="mt-4 navbar bg-light" expand="md">
                 <Container>
-                    <Navbar.Brand />
+                    <Navbar.Brand>
+                        <img src={logo} width="40" height="40" className="" />
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse
                         className="justify-content-between"
