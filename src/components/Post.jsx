@@ -115,7 +115,7 @@ export default function Post(props) {
     };
 
     return (
-        <Col xs={12} className="mt-5 d-flex justify-content-center">
+        <Col xs={12} className="mt-3 d-flex justify-content-center">
             <Card style={{ width: "30rem" }}>
                 <Card.Body>
                     <Card.Title className="text-center fs-2">
@@ -188,6 +188,7 @@ export default function Post(props) {
                                     {comment === "" ? (
                                         <div>
                                             <Button
+                                                className="text-light"
                                                 onClick={handleComment}
                                                 disabled
                                             >
@@ -195,7 +196,10 @@ export default function Post(props) {
                                             </Button>
                                         </div>
                                     ) : (
-                                        <Button onClick={handleComment}>
+                                        <Button
+                                            onClick={handleComment}
+                                            className="text-light"
+                                        >
                                             Post
                                         </Button>
                                     )}

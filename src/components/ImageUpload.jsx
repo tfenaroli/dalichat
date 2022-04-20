@@ -80,16 +80,6 @@ export default function ImageUpload(props) {
 
     return (
         <Container className="mt-5 border bg-light">
-            <Row className="mt-3">
-                <Col className="text-center">
-                    <h1>Upload a post about DALI Lab!</h1>
-                </Col>
-            </Row>
-            <Row className="mt-2">
-                <Col className="text-center">
-                    <h5 className="text-muted">{props.user?.email}</h5>
-                </Col>
-            </Row>
             <Row className="">
                 <Col className="d-flex justify-content-center">
                     <progress className="mt-3" value={progress} max="100" />
@@ -109,7 +99,6 @@ export default function ImageUpload(props) {
 
             <Row className="mb-3 d-flex justify-content-center">
                 <Col lg={3} className="mt-3 text-center">
-                    <p>(Image optional!)</p>
                     <Form.Control
                         size="sm"
                         type="file"
@@ -119,12 +108,18 @@ export default function ImageUpload(props) {
                 <Col lg={3} className="mt-3 text-center">
                     {caption === "" ? (
                         <div>
-                            <Button onClick={handleUpload} disabled>
+                            <Button
+                                onClick={handleUpload}
+                                className="text-light"
+                                disabled
+                            >
                                 Upload
                             </Button>
                         </div>
                     ) : (
-                        <Button onClick={handleUpload}>Upload</Button>
+                        <Button onClick={handleUpload} className="text-light">
+                            Upload
+                        </Button>
                     )}
                 </Col>
             </Row>
