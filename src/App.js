@@ -34,7 +34,7 @@ function App() {
 			<Row className="mt-2">
 				<Col className="text-center">
 					<Button
-						variant="outline-secondary"
+						variant="secondary"
 						onClick={() => setShowModal(true)}
 					>
 						About
