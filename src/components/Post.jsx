@@ -118,7 +118,7 @@ export default function Post(props) {
         <Col xs={12} className="mt-5 d-flex justify-content-center">
             <Card style={{ width: "30rem" }}>
                 <Card.Body>
-                    <Card.Title className="text-center fs-2">
+                    <Card.Title className="text-center fs-2 border">
                         <b>{props.username}</b>
                     </Card.Title>
                 </Card.Body>
