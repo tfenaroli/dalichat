@@ -30,11 +30,13 @@ function App() {
 
 	return (
 		<Router>
+			{/* <NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} /> */}
+
 			<Header />
 			<Row className="mt-2">
 				<Col className="text-center">
 					<Button
-						variant="outline-secondary"
+						className="text-light"
 						onClick={() => setShowModal(true)}
 					>
 						About
@@ -61,30 +63,35 @@ function App() {
 			>
 				<Modal.Header closeButton>
 					<Modal.Title id="example-modal-sizes-title-sm">
-						DaliChat
+						DALIChat
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="p-4">
 					<Container>
 						<Row>
 							<Col className="text-center">
-								<h1>Welcome to DaliChat!</h1>
+								<h1>Welcome to DALIChat!</h1>
 							</Col>
 						</Row>
 						<Row className="mt-3">
 							<Col className="text-center">
-								<p>DaliChat is a social media platform for users to learn about DALI Lab members and talk about the DALI Lab. You can click on member profiles, post, comment on posts,
-									and view your own posts on DaliChat. Feel free to email <b>thomas.s.fenaroli.24@dartmouth.edu</b> with any questions. Chat away!</p>
+								<p>DALIChat is a social media platform for users to learn about DALI Lab members and talk about the DALI Lab. You can click on member profiles, post, comment on posts, react to posts,
+									and view your own posts on DALIChat. Feel free to email <b>thomas.s.fenaroli.24@dartmouth.edu</b> with any questions. Chat away!</p>
 							</Col>
 						</Row>
 						<ul className="mt-3 list-group">
 							<li className="list-group-item">Check out the <b>Members</b> page to learn about current DaliLab members!</li>
-							<li className="list-group-item">Check out the <b>Feed</b> page to see your current social media feed, make posts, and comment on posts!</li>
-							<li className="list-group-item">Check out the <b>Account</b> page to see what you've posted on DaliChat!</li>
+							<li className="list-group-item">Check out the <b>Feed</b> page to see your current social media feed, make posts, react to posts, and comment on posts!</li>
+							<li className="list-group-item">Check out the <b>Account</b> page to see what you've posted on DALIChat!</li>
 						</ul>
 						<Row className="mt-4">
 							<Col className="text-center">
-								<p className="my-auto"><b>Remember, to post, comment, or view your account, you must register/sign in!</b></p>
+								<p className="my-auto"><b>To post, react, comment, or view your account, you must register/sign in!</b></p>
+							</Col>
+						</Row>
+						<Row className="mt-4">
+							<Col className="">
+								<p className="my-auto"><b>Upload instructions:</b><br />1. Enter a caption<br />2. Select an image from your device (optional)<br />3. Hit the <b>Upload</b> button<br />4. See your post on the feed!</p>
 							</Col>
 						</Row>
 					</Container>

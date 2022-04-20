@@ -24,7 +24,7 @@ export default function Profile(props) {
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Text>{props.year}</Card.Text>
                     <Button
-                        variant="outline-secondary"
+                        className="text-light"
                         onClick={() => setShowModal(true)}
                     >
                         See Profile

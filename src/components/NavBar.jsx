@@ -37,7 +37,7 @@ const NavBar = (props) => {
             <Navbar className="mt-4 navbar bg-light" expand="md">
                 <Container>
                     <Navbar.Brand>
-                        <img src={logo} width="40" height="40" className="" />
+                        <img src={logo} width="40" height="40" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse
@@ -65,28 +65,27 @@ const NavBar = (props) => {
                         </Nav>
                         <Nav className="text-center">
                             {props.user ? (
-                                <Button
-                                    variant="outline-secondary"
-                                    onClick={() => {
-                                        auth.signOut();
-                                    }}
-                                    className="m-2"
-                                >
-                                    Logout
-                                </Button>
+                                <div>
+                                    <Button
+                                        className="m-2 text-light"
+                                        onClick={() => {
+                                            auth.signOut();
+                                        }}
+                                    >
+                                        Sign Out
+                                    </Button>
+                                </div>
                             ) : (
                                 <div>
                                     <Button
-                                        variant="outline-secondary"
+                                        className="m-2 text-light"
                                         onClick={() => setShowSignInModal(true)}
-                                        className="m-2"
                                     >
                                         Sign In
                                     </Button>
                                     <Button
-                                        variant="outline-secondary"
+                                        className="m-2 text-light"
                                         onClick={() => setShowModal(true)}
-                                        className="m-2"
                                     >
                                         Register
                                     </Button>
@@ -105,7 +104,7 @@ const NavBar = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Register for DaliChat!
+                        Register for DALIChat!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -153,7 +152,7 @@ const NavBar = (props) => {
 
                             <Button
                                 onClick={register}
-                                variant="primary"
+                                className="text-light"
                                 type="submit"
                             >
                                 Register
@@ -170,7 +169,7 @@ const NavBar = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Sign into DaliChat!
+                        Sign into DALIChat!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -207,7 +206,7 @@ const NavBar = (props) => {
 
                             <Button
                                 onClick={signIn}
-                                variant="primary"
+                                className="text-light"
                                 type="submit"
                             >
                                 Sign In

@@ -1,9 +1,6 @@
-* {
-    /* background-color: blue; */
-}
-
 html,
 body {
     max-width: 100%;
     overflow-x: hidden;
+    background-color: #ecf4f4;
 }
