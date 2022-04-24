@@ -39,6 +39,7 @@ export default function Feed(props) {
                             postId={id}
                             user={props.user}
                             username={post.username}
+                            profilePic={post.profilePic}
                             caption={post.caption}
                             picture={post.picture}
                         />

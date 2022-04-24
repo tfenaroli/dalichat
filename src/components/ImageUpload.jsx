@@ -3,7 +3,6 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { db, storage } from "../firebase";
 import firebase from "firebase/compat/app";
 import { v4 as uuidv4 } from "uuid";
-// import "../app.css";
 
 export default function ImageUpload(props) {
     const [caption, setCaption] = useState("");
@@ -26,7 +25,6 @@ export default function ImageUpload(props) {
             alert("Empty caption!");
         } else {
             if (image) {
-                console.log("image name is: " + image.name);
                 const uploadTask = storage
                     .ref(`images/${image.name}`)
                     .put(image);
@@ -44,6 +42,15 @@ export default function ImageUpload(props) {
                         alert(error.message);
                     },
                     () => {
+                        let profPic;
+                        storage
+                            .ref("profilepics")
+                            .child(props.user?.photoURL)
+                            .getDownloadURL()
+                            .then((picture) => {
+                                profPic = picture;
+                            });
+
                         storage
                             .ref("images")
                             .child(image.name)
@@ -53,7 +60,7 @@ export default function ImageUpload(props) {
                                     timestamp:
                                         firebase.firestore.FieldValue.serverTimestamp(),
                                     username: props.user?.displayName,
-
+                                    profilePic: profPic,
                                     picture: picture,
                                     caption: caption,
                                 });
@@ -64,16 +71,7 @@ export default function ImageUpload(props) {
                     }
                 );
             } else {
-                db.collection("posts").add({
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    username: props.user?.displayName,
-
-                    picture: "",
-                    caption: caption,
-                });
-
-                setCaption("");
-                setImage(null);
+                alert("No image!");
             }
         }
     };
@@ -82,17 +80,13 @@ export default function ImageUpload(props) {
         <Container className="mt-5 border bg-light">
             <Row className="mt-3">
                 <Col className="text-center">
-                    <h1>Upload a post about DALI Lab!</h1>
+                    <h2>Upload a post about DALI Lab!</h2>
                 </Col>
             </Row>
-            <Row className="mt-2">
-                <Col className="text-center">
-                    <h5 className="text-muted">{props.user?.email}</h5>
-                </Col>
-            </Row>
-            <Row className="">
+
+            <Row>
                 <Col className="d-flex justify-content-center">
-                    <progress className="mt-3" value={progress} max="100" />
+                    <progress className="mt-2" value={progress} max="100" />
                 </Col>
             </Row>
             <Row className="d-flex justify-content-center">
@@ -109,7 +103,6 @@ export default function ImageUpload(props) {
 
             <Row className="mb-3 d-flex justify-content-center">
                 <Col lg={3} className="mt-3 text-center">
-                    <p>(Image optional!)</p>
                     <Form.Control
                         size="sm"
                         type="file"
@@ -117,7 +110,7 @@ export default function ImageUpload(props) {
                     />
                 </Col>
                 <Col lg={3} className="mt-3 text-center">
-                    {caption === "" ? (
+                    {caption === "" || !image ? (
                         <div>
                             <Button onClick={handleUpload} disabled>
                                 Upload

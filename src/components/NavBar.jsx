@@ -1,20 +1,37 @@
 import React, { useState } from "react";
 import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
+import { storage, auth } from "../firebase";
 import logo from "../DALICHAT.png";
+import { v4 as uuidv4 } from "uuid";
 
 const NavBar = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [showSignInModal, setShowSignInModal] = useState(false);
 
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            let name = uuidv4();
+            name += ".jpg";
+            var newFile = new File([e.target.files[0]], name, {
+                type: "image/jpg",
+            });
+            props.setProfilePic(newFile);
+        }
+    };
+
     const register = (event) => {
         event.preventDefault();
+
+        storage
+            .ref(`profilepics/${props.profilePic.name}`)
+            .put(props.profilePic);
 
         auth.createUserWithEmailAndPassword(props.email, props.password)
             .then((authUser) => {
                 authUser.user.updateProfile({
                     displayName: props.username,
+                    photoURL: props.profilePic.name,
                 });
             })
             .catch((error) => alert(error.message));
@@ -37,7 +54,13 @@ const NavBar = (props) => {
             <Navbar className="mt-4 navbar bg-light" expand="md">
                 <Container>
                     <Navbar.Brand>
-                        <img src={logo} width="40" height="40" className="" />
+                        <img
+                            src={logo}
+                            alt="logo"
+                            width="40"
+                            height="40"
+                            className=""
+                        />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse
@@ -72,7 +95,7 @@ const NavBar = (props) => {
                                     }}
                                     className="m-2"
                                 >
-                                    Logout
+                                    Sign Out
                                 </Button>
                             ) : (
                                 <div>
@@ -134,6 +157,14 @@ const NavBar = (props) => {
                                     onChange={(e) =>
                                         props.setEmail(e.target.value)
                                     }
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Profile Picture</Form.Label>
+                                <Form.Control
+                                    size="sm"
+                                    type="file"
+                                    onChange={handleChange}
                                 />
                             </Form.Group>
                             <Form.Group

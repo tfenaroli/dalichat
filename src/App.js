@@ -14,6 +14,7 @@ import "./app.css"
 function App() {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
+	const [profilePic, setProfilePic] = useState(null);
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
 	const [showModal, setShowModal] = useState(true);
@@ -42,7 +43,7 @@ function App() {
 				</Col>
 			</Row>
 
-			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
+			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} profilePic={profilePic} setProfilePic={setProfilePic} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
 			<Container>
 				<Routes>
 					<Route path="/">
