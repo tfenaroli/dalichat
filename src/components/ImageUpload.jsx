@@ -26,7 +26,6 @@ export default function ImageUpload(props) {
             alert("Empty caption!");
         } else {
             if (image) {
-                console.log("image name is: " + image.name);
                 const uploadTask = storage
                     .ref(`images/${image.name}`)
                     .put(image);
@@ -44,6 +43,8 @@ export default function ImageUpload(props) {
                         alert(error.message);
                     },
                     () => {
+                        console.log("username is: " + props.user?.displayName);
+                        console.log("prof pic is: " + props.user?.photoURL);
                         storage
                             .ref("images")
                             .child(image.name)
@@ -53,7 +54,7 @@ export default function ImageUpload(props) {
                                     timestamp:
                                         firebase.firestore.FieldValue.serverTimestamp(),
                                     username: props.user?.displayName,
-
+                                    profilePic: props.user?.photoURL,
                                     picture: picture,
                                     caption: caption,
                                 });

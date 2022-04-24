@@ -3,10 +3,22 @@ import { Navbar, Container, Nav, Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 import logo from "../DALICHAT.png";
+import { v4 as uuidv4 } from "uuid";
 
 const NavBar = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [showSignInModal, setShowSignInModal] = useState(false);
+
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            let name = uuidv4();
+            name += ".jpg";
+            var newFile = new File([e.target.files[0]], name, {
+                type: "image/jpg",
+            });
+            props.setProfilePic(newFile);
+        }
+    };
 
     const register = (event) => {
         event.preventDefault();
@@ -15,6 +27,7 @@ const NavBar = (props) => {
             .then((authUser) => {
                 authUser.user.updateProfile({
                     displayName: props.username,
+                    photoURL: props.profilePic,
                 });
             })
             .catch((error) => alert(error.message));
@@ -134,6 +147,14 @@ const NavBar = (props) => {
                                     onChange={(e) =>
                                         props.setEmail(e.target.value)
                                     }
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Profile Picture</Form.Label>
+                                <Form.Control
+                                    size="sm"
+                                    type="file"
+                                    onChange={handleChange}
                                 />
                             </Form.Group>
                             <Form.Group
