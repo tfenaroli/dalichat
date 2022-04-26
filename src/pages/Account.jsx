@@ -47,6 +47,7 @@ export default function Account(props) {
                             postId={id}
                             user={props.user}
                             username={post.username}
+                            profilePic={post.profilePic}
                             caption={post.caption}
                             picture={post.picture}
                         />

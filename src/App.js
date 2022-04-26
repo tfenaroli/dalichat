@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Members from "./pages/Members";
 import Feed from "./pages/Feed";
 import Account from "./pages/Account"
+import Footer from "./components/Footer"
 import { auth } from "./firebase"
 import "./app.css"
 
@@ -54,6 +55,7 @@ function App() {
 					</Route>
 				</Routes>
 			</Container>
+			<Footer />
 			<Modal
 				size="lg"
 				show={showModal}
@@ -62,26 +64,26 @@ function App() {
 			>
 				<Modal.Header closeButton>
 					<Modal.Title id="example-modal-sizes-title-sm">
-						DaliChat
+						DALIChat
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className="p-4">
 					<Container>
 						<Row>
 							<Col className="text-center">
-								<h1>Welcome to DaliChat!</h1>
+								<h1>Welcome to DALIChat!</h1>
 							</Col>
 						</Row>
 						<Row className="mt-3">
 							<Col className="text-center">
-								<p>DaliChat is a social media platform for users to learn about DALI Lab members and talk about the DALI Lab. You can click on member profiles, post, comment on posts,
-									and view your own posts on DaliChat. Feel free to email <b>thomas.s.fenaroli.24@dartmouth.edu</b> with any questions. Chat away!</p>
+								<p>DALIChat is a social media platform for users to learn about DALI Lab members and talk about the DALI Lab. You can click on member profiles, post, comment on posts,
+									and view your own posts on DALIChat. Feel free to email <b>thomas.s.fenaroli.24@dartmouth.edu</b> with any questions. Chat away!</p>
 							</Col>
 						</Row>
 						<ul className="mt-3 list-group">
-							<li className="list-group-item">Check out the <b>Members</b> page to learn about current DaliLab members!</li>
+							<li className="list-group-item">Check out the <b>Members</b> page to learn about current DALI Lab members!</li>
 							<li className="list-group-item">Check out the <b>Feed</b> page to see your current social media feed, make posts, and comment on posts!</li>
-							<li className="list-group-item">Check out the <b>Account</b> page to see what you've posted on DaliChat!</li>
+							<li className="list-group-item">Check out the <b>Account</b> page to see what you've posted on DALI Chat!</li>
 						</ul>
 						<Row className="mt-4">
 							<Col className="text-center">

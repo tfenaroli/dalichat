@@ -89,7 +89,7 @@ const NavBar = (props) => {
                         <Nav className="text-center">
                             {props.user ? (
                                 <Button
-                                    variant="outline-secondary"
+                                    variant="secondary"
                                     onClick={() => {
                                         auth.signOut();
                                     }}
@@ -100,14 +100,14 @@ const NavBar = (props) => {
                             ) : (
                                 <div>
                                     <Button
-                                        variant="outline-secondary"
+                                        variant="secondary"
                                         onClick={() => setShowSignInModal(true)}
                                         className="m-2"
                                     >
                                         Sign In
                                     </Button>
                                     <Button
-                                        variant="outline-secondary"
+                                        variant="secondary"
                                         onClick={() => setShowModal(true)}
                                         className="m-2"
                                     >
@@ -128,7 +128,7 @@ const NavBar = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Register for DaliChat!
+                        Register for DALIChat!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -201,7 +201,7 @@ const NavBar = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Sign into DaliChat!
+                        Sign into DALIChat!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
