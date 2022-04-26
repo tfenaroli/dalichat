@@ -92,9 +92,7 @@ export default function Post(props) {
             return (
                 <Accordion defaultActiveKey="0" className="mb-3">
                     <Accordion.Item eventKey="1">
-                        <Accordion.Header>
-                            See All Comments (Scrollable)
-                        </Accordion.Header>
+                        <Accordion.Header>See All Comments</Accordion.Header>
                         <Accordion.Body>
                             <div
                                 className="mt-2"
@@ -133,6 +131,9 @@ export default function Post(props) {
                 </Card.Body>
                 <Image fluid="true" variant="top" src={props.picture} />
                 <Card.Body>
+                    <Card.Text className="text-muted">
+                        {props.timestamp.toDate().toLocaleString()}
+                    </Card.Text>
                     <Card.Text>
                         <b>{props.username}</b> {props.caption}
                     </Card.Text>

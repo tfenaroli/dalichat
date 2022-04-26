@@ -46,39 +46,52 @@ export default function Account(props) {
                                     Signed in as: <b>{props.user?.email}</b>
                                 </h3>
 
-                                <Row>
-                                    <Col md={5} className="mt-4 text-center">
+                                <Row className="mt-4 border">
+                                    <Col md={5} className="text-center">
                                         <Image
                                             id="profile"
                                             alt="profile picture"
                                             fluid
+                                            roundedCircle
+                                            className="border"
                                         />
                                         {getProfilePic()}
                                     </Col>
-                                    <Col md={7} className="mt-4 border">
-                                        <p className="fs-4 mt-3">
-                                            <b>Email: </b>
-                                            {props.user?.email}
-                                        </p>
-                                        <p className="fs-4">
-                                            <b>Username: </b>
-                                            {props.user?.displayName}
-                                        </p>
-                                        <p className="fs-4">
-                                            <b>Number of DALIChat Posts: </b>
-                                            {posts.length}
-                                        </p>
-                                        <p className="fs-4">
-                                            <b>Registered on: </b>
-                                            {props.user?.metadata.creationTime}
-                                        </p>
-                                        <p className="fs-4">
-                                            <b>Last Signed in: </b>
-                                            {
-                                                props.user?.metadata
-                                                    .lastSignInTime
-                                            }
-                                        </p>
+                                    <Col
+                                        md={7}
+                                        className="d-flex align-items-center"
+                                    >
+                                        <div>
+                                            <p className="fs-4">
+                                                <b>Username: </b>
+                                                {props.user?.displayName}
+                                            </p>
+                                            <p className="fs-4 mt-3">
+                                                <b>Email: </b>
+                                                {props.user?.email}
+                                            </p>
+
+                                            <p className="fs-4">
+                                                <b>
+                                                    Number of DALIChat Posts:{" "}
+                                                </b>
+                                                {posts.length}
+                                            </p>
+                                            <p className="fs-4">
+                                                <b>Registered on: </b>
+                                                {
+                                                    props.user?.metadata
+                                                        .creationTime
+                                                }
+                                            </p>
+                                            <p className="fs-4">
+                                                <b>Last Signed in: </b>
+                                                {
+                                                    props.user?.metadata
+                                                        .lastSignInTime
+                                                }
+                                            </p>
+                                        </div>
                                     </Col>
                                 </Row>
                                 <h1 className="mt-4 text-center">
