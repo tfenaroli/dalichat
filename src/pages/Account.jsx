@@ -47,7 +47,7 @@ export default function Account(props) {
                                 </h3>
 
                                 <Row className="mt-4 border">
-                                    <Col md={5} className="text-center">
+                                    <Col md={5} className="my-4 text-center">
                                         <Image
                                             id="profile"
                                             alt="profile picture"
