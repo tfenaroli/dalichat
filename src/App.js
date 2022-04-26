@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Row, Col, Container, Modal, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from './components/Header';
+// import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Members from "./pages/Members";
 import Feed from "./pages/Feed";
@@ -32,8 +32,11 @@ function App() {
 
 	return (
 		<Router>
-			<Header />
-			<Row className="mt-2">
+			{/* <Header /> */}
+
+
+			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} profilePic={profilePic} setProfilePic={setProfilePic} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
+			<Row className="mt-5">
 				<Col className="text-center">
 					<Button
 						variant="outline-secondary"
@@ -43,8 +46,6 @@ function App() {
 					</Button>
 				</Col>
 			</Row>
-
-			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} profilePic={profilePic} setProfilePic={setProfilePic} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
 			<Container>
 				<Routes>
 					<Route path="/">

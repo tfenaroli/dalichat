@@ -51,15 +51,16 @@ const NavBar = (props) => {
 
     return (
         <React.Fragment>
-            <Navbar className="mt-4 navbar bg-light" expand="md">
+            <Navbar className="navbar bg-light" expand="md">
                 <Container>
                     <Navbar.Brand>
+                        DALIChat
                         <img
                             src={logo}
                             alt="logo"
                             width="40"
                             height="40"
-                            className=""
+                            className="ms-3"
                         />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
