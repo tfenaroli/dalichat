@@ -14,15 +14,22 @@ const Footer = () => {
             <Row>
                 <Col className="text-center">
                     <p className="text-break text-muted fs-5">
-                        thomas.s.fenaroli.24@dartmouth.edu - (203)-832-5002
+                        developed by <b>Thomas Fenaroli</b>
                     </p>
                 </Col>
             </Row>
+            {/* <Row>
+                <Col className="text-center">
+                    <p className="text-break text-muted fs-5">
+                        thomas.s.fenaroli.24@dartmouth.edu - (203)-832-5002
+                    </p>
+                </Col>
+            </Row> */}
             <Row className="d-flex justify-content-center">
                 <Col xs={4} className="mt-2 mb-4 d-flex justify-content-center">
                     <Button
                         className="mx-2"
-                        variant="light"
+                        variant="secondary"
                         href="https://github.com/tfenaroli/dalichat"
                         target="_blank"
                     >

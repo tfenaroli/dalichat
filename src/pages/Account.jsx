@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Image, Container, Row, Col } from "react-bootstrap";
 import Post from "../components/Post";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 
 export default function Account(props) {
     const [posts, setPosts] = useState([]);
@@ -24,18 +24,71 @@ export default function Account(props) {
         }
     }, [props.user]);
 
+    const getProfilePic = () => {
+        storage
+            .ref("profilepics")
+            .child(props.user?.photoURL)
+            .getDownloadURL()
+            .then((picture) => {
+                var img = document.getElementById("profile");
+                img.setAttribute("src", picture);
+            });
+    };
+
     return (
         <div className="d-flex justify-content-center">
             <Container>
-                <Row className="mt-5">
-                    <Col className="text-center">
+                <Row className="mt-4">
+                    <Col>
                         {props.user ? (
                             <div>
-                                <h1>Signed in as: {props.user?.email}</h1>
-                                <h1 className="mt-5">Your posts:</h1>
+                                <h3 className="text-center text-muted">
+                                    Signed in as: <b>{props.user?.email}</b>
+                                </h3>
+
+                                <Row>
+                                    <Col md={5} className="mt-4 text-center">
+                                        <Image
+                                            id="profile"
+                                            alt="profile picture"
+                                            fluid
+                                        />
+                                        {getProfilePic()}
+                                    </Col>
+                                    <Col md={7} className="mt-4 border">
+                                        <p className="fs-4 mt-3">
+                                            <b>Email: </b>
+                                            {props.user?.email}
+                                        </p>
+                                        <p className="fs-4">
+                                            <b>Username: </b>
+                                            {props.user?.displayName}
+                                        </p>
+                                        <p className="fs-4">
+                                            <b>Number of DALIChat Posts: </b>
+                                            {posts.length}
+                                        </p>
+                                        <p className="fs-4">
+                                            <b>Registered on: </b>
+                                            {props.user?.metadata.creationTime}
+                                        </p>
+                                        <p className="fs-4">
+                                            <b>Last Signed in: </b>
+                                            {
+                                                props.user?.metadata
+                                                    .lastSignInTime
+                                            }
+                                        </p>
+                                    </Col>
+                                </Row>
+                                <h1 className="mt-4 text-center">
+                                    Your posts:
+                                </h1>
                             </div>
                         ) : (
-                            <h1>Sign in to view your account and posts!</h1>
+                            <h1 className="text-center">
+                                Sign in to view your account and posts!
+                            </h1>
                         )}
                     </Col>
                 </Row>
@@ -50,6 +103,7 @@ export default function Account(props) {
                             profilePic={post.profilePic}
                             caption={post.caption}
                             picture={post.picture}
+                            timestamp={post.timestamp}
                         />
                     ))}
                 </Row>

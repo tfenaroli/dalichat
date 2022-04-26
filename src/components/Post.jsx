@@ -115,7 +115,7 @@ export default function Post(props) {
     };
 
     return (
-        <Col xs={12} className="mt-5 d-flex justify-content-center">
+        <Col xs={12} className="mt-4 d-flex justify-content-center">
             <Card style={{ width: "30rem" }}>
                 <Card.Body>
                     <Card.Title className="my-0 fs-2">
@@ -181,7 +181,7 @@ export default function Post(props) {
                     {props.user && (
                         <Container>
                             <Row>
-                                <Col xs={8} className="text-center">
+                                <Col xs={10} className="text-center">
                                     <Form.Control
                                         className=""
                                         type="text"
@@ -192,19 +192,19 @@ export default function Post(props) {
                                         }
                                     />
                                 </Col>
-                                <Col xs={4} className="text-center">
+                                <Col xs={2} className="text-center">
                                     {comment === "" ? (
                                         <div>
                                             <Button
                                                 onClick={handleComment}
                                                 disabled
                                             >
-                                                Post
+                                                <i className="bi bi-pencil-square" />
                                             </Button>
                                         </div>
                                     ) : (
                                         <Button onClick={handleComment}>
-                                            Post
+                                            <i className="bi bi-pencil-square" />
                                         </Button>
                                     )}
                                 </Col>

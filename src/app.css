@@ -2,8 +2,13 @@
     /* background-color: blue; */
 }
 
+.nav {
+    background-color: #c4e7e6;
+}
+
 html,
 body {
     max-width: 100%;
     overflow-x: hidden;
+    background-color: rgb(250, 250, 250, 255);
 }

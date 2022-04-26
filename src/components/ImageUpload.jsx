@@ -77,7 +77,7 @@ export default function ImageUpload(props) {
     };
 
     return (
-        <Container className="mt-5 border bg-light">
+        <Container className="mt-4 border bg-light">
             <Row className="mt-3">
                 <Col className="text-center">
                     <h2>Upload a post about DALI Lab!</h2>

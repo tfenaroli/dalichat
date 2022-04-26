@@ -42,6 +42,7 @@ export default function Feed(props) {
                             profilePic={post.profilePic}
                             caption={post.caption}
                             picture={post.picture}
+                            timestamp={post.timestamp}
                         />
                     ))}
                 </Row>
