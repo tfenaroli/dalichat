@@ -132,7 +132,7 @@ export default function Post(props) {
                 <Image fluid="true" variant="top" src={props.picture} />
                 <Card.Body>
                     <Card.Text className="text-muted">
-                        {props.timestamp.toDate().toLocaleString()}
+                        {props.timestamp?.toDate().toLocaleString()}
                     </Card.Text>
                     <Card.Text>
                         <b>{props.username}</b> {props.caption}
