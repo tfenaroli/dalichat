@@ -206,13 +206,27 @@ const NavBar = (props) => {
                                 />
                             </Form.Group>
 
-                            <Button
-                                onClick={register}
-                                variant="primary"
-                                type="submit"
-                            >
-                                Register
-                            </Button>
+                            {props.username === "" ||
+                            props.email === "" ||
+                            props.password === "" ||
+                            !props.profilePic ? (
+                                <Button
+                                    onClick={register}
+                                    variant="primary"
+                                    type="submit"
+                                    disabled
+                                >
+                                    Register
+                                </Button>
+                            ) : (
+                                <Button
+                                    onClick={register}
+                                    variant="primary"
+                                    type="submit"
+                                >
+                                    Register
+                                </Button>
+                            )}
                         </Form>
                     </Container>
                 </Modal.Body>
