@@ -21,58 +21,51 @@ export default function ImageUpload(props) {
     };
 
     const handleUpload = () => {
-        if (caption === "") {
-            alert("Empty caption!");
+        if (image) {
+            const uploadTask = storage.ref(`images/${image.name}`).put(image);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setProgress(progress);
+                },
+                (error) => {
+                    console.log(error);
+                    alert(error.message);
+                },
+                () => {
+                    let profPic;
+                    storage
+                        .ref("profilepics")
+                        .child(props.user?.photoURL)
+                        .getDownloadURL()
+                        .then((picture) => {
+                            profPic = picture;
+                        });
+
+                    storage
+                        .ref("images")
+                        .child(image.name)
+                        .getDownloadURL()
+                        .then((picture) => {
+                            db.collection("posts").add({
+                                timestamp:
+                                    firebase.firestore.FieldValue.serverTimestamp(),
+                                username: props.user?.displayName,
+                                profilePic: profPic,
+                                picture: picture,
+                                caption: caption,
+                            });
+
+                            setCaption("");
+                            setImage(null);
+                        });
+                }
+            );
         } else {
-            if (image) {
-                const uploadTask = storage
-                    .ref(`images/${image.name}`)
-                    .put(image);
-                uploadTask.on(
-                    "state_changed",
-                    (snapshot) => {
-                        const progress = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) *
-                                100
-                        );
-                        setProgress(progress);
-                    },
-                    (error) => {
-                        console.log(error);
-                        alert(error.message);
-                    },
-                    () => {
-                        let profPic;
-                        storage
-                            .ref("profilepics")
-                            .child(props.user?.photoURL)
-                            .getDownloadURL()
-                            .then((picture) => {
-                                profPic = picture;
-                            });
-
-                        storage
-                            .ref("images")
-                            .child(image.name)
-                            .getDownloadURL()
-                            .then((picture) => {
-                                db.collection("posts").add({
-                                    timestamp:
-                                        firebase.firestore.FieldValue.serverTimestamp(),
-                                    username: props.user?.displayName,
-                                    profilePic: profPic,
-                                    picture: picture,
-                                    caption: caption,
-                                });
-
-                                setCaption("");
-                                setImage(null);
-                            });
-                    }
-                );
-            } else {
-                alert("No image!");
-            }
+            alert("No image!");
         }
     };
 

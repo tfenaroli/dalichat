@@ -28,8 +28,8 @@ export default function Feed(props) {
                         <ImageUpload user={props.user} />
                     </div>
                 ) : (
-                    <h1 className="mt-5 text-center">
-                        Sign in to post to DALIChat!
+                    <h1 className="mt-4 text-center">
+                        Sign in or register to post to DALIChat!
                     </h1>
                 )}
                 <Row>

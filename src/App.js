@@ -31,9 +31,6 @@ function App() {
 
 	return (
 		<Router>
-			{/* <Header /> */}
-
-
 			<NavBar user={user} setUser={setUser} username={username} setUsername={setUsername} profilePic={profilePic} setProfilePic={setProfilePic} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
 
 			<Container>
@@ -47,7 +44,6 @@ function App() {
 				</Routes>
 			</Container>
 			<Footer />
-
 		</Router>
 	);
 }

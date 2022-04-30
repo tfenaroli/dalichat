@@ -239,7 +239,7 @@ const NavBar = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-sm">
-                        Sign into DALIChat!
+                        Sign in to DALIChat!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -274,13 +274,24 @@ const NavBar = (props) => {
                                 />
                             </Form.Group>
 
-                            <Button
-                                onClick={signIn}
-                                variant="primary"
-                                type="submit"
-                            >
-                                Sign In
-                            </Button>
+                            {props.email === "" || props.password === "" ? (
+                                <Button
+                                    onClick={signIn}
+                                    variant="primary"
+                                    type="submit"
+                                    disabled
+                                >
+                                    Sign In
+                                </Button>
+                            ) : (
+                                <Button
+                                    onClick={signIn}
+                                    variant="primary"
+                                    type="submit"
+                                >
+                                    Sign In
+                                </Button>
+                            )}
                         </Form>
                     </Container>
                 </Modal.Body>
