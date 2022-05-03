@@ -7,7 +7,7 @@ export default function Members() {
     return (
         <div>
             <Container>
-                <Row className="mt-5 text-center">
+                <Row className="mt-4 text-center">
                     <h1>Learn about DALI Lab members!</h1>
                 </Row>
                 <Row>

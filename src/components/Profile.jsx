@@ -12,7 +12,7 @@ import {
 export default function Profile(props) {
     const [showModal, setShowModal] = useState(false);
     return (
-        <Col className="mt-5 d-flex justify-content-center">
+        <Col className="mt-4 d-flex justify-content-center">
             <Card className="text-center" style={{ width: "12rem" }}>
                 <Card.Img
                     variant="top"

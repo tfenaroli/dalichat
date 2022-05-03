@@ -319,8 +319,8 @@ const NavBar = (props) => {
                                 <p>
                                     DALIChat is a social media platform for
                                     users to learn about DALI Lab members and
-                                    talk about the DALI Lab. You can click on
-                                    member profiles, post, comment on posts,
+                                    talk about the DALI Lab. You can learn about
+                                    current members, post, comment on posts,
                                     react to posts, and view your own posts on
                                     DALIChat. Feel free to email{" "}
                                     <b>thomas.s.fenaroli.24@dartmouth.edu</b>{" "}
@@ -347,11 +347,22 @@ const NavBar = (props) => {
                             <Col className="text-center">
                                 <p className="my-auto">
                                     <b>
-                                        To post, comment, react to posts, or
-                                        view your account, you must
-                                        register/sign in!
+                                        To post, comment, react, or view your
+                                        account, you must register/sign in!
                                     </b>
                                 </p>
+                            </Col>
+                        </Row>
+                        <Row className="mt-4">
+                            <Col className="text-center">
+                                <Button
+                                    className="mx-2"
+                                    variant="secondary"
+                                    href="https://github.com/tfenaroli/dalichat"
+                                    target="_blank"
+                                >
+                                    <i className="bi bi-github" />
+                                </Button>
                             </Col>
                         </Row>
                     </Container>
