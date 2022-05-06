@@ -42,26 +42,32 @@ export default function ImageUpload(props) {
                         .child(props.user?.photoURL)
                         .getDownloadURL()
                         .then((picture) => {
+                            console.log("picture is (in then) " + picture);
                             profPic = picture;
+                            console.log("prof pic is (in then) " + profPic);
                         });
 
-                    storage
-                        .ref("images")
-                        .child(image.name)
-                        .getDownloadURL()
-                        .then((picture) => {
-                            db.collection("posts").add({
-                                timestamp:
-                                    firebase.firestore.FieldValue.serverTimestamp(),
-                                username: props.user?.displayName,
-                                profilePic: profPic,
-                                picture: picture,
-                                caption: caption,
+                    console.log("prof pic is " + profPic);
+
+                    setTimeout(() => {
+                        storage
+                            .ref("images")
+                            .child(image.name)
+                            .getDownloadURL()
+                            .then((picture) => {
+                                db.collection("posts").add({
+                                    timestamp:
+                                        firebase.firestore.FieldValue.serverTimestamp(),
+                                    username: props.user?.displayName,
+                                    profilePic: profPic,
+                                    picture: picture,
+                                    caption: caption,
+                                });
+
+                                setCaption("");
+                                setImage(null);
                             });
-
-                            setCaption("");
-                            setImage(null);
-                        });
+                    }, 1000);
                 }
             );
         } else {
