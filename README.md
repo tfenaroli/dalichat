@@ -8,7 +8,7 @@ DALIChat is a social media platform for users to learn about DALI Lab members an
 
 ### Dependencies
 
-* Node modules and dependencies included in repository
+* Dependencies included in repository
 
 ### Installing
 
