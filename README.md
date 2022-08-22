@@ -32,9 +32,8 @@ npm start
 
 ## Authors
 
-Contributors names and contact info
+Contributor's name and contact info
 
 * Thomas Fenaroli
 * thomas.s.fenaroli.24@dartmouth.edu
-* tfenaroli@icloud.com
 * (203)-832-5002
